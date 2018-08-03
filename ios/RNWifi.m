@@ -31,12 +31,13 @@ RCT_EXPORT_METHOD(connectToSSID:(NSString*)ssid
 RCT_EXPORT_METHOD(connectToProtectedSSID:(NSString*)ssid
                   withPassphrase:(NSString*)passphrase
                   isWEP:(BOOL)isWEP
+                  joinOnce:(BOOL)joinOnce
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
     
     if (@available(iOS 11.0, *)) {
         NEHotspotConfiguration* configuration = [[NEHotspotConfiguration alloc] initWithSSID:ssid passphrase:passphrase isWEP:isWEP];
-        configuration.joinOnce = true;
+        configuration.joinOnce = joinOnce;
         
         [[NEHotspotConfigurationManager sharedManager] applyConfiguration:configuration completionHandler:^(NSError * _Nullable error) {
             if (error != nil) {

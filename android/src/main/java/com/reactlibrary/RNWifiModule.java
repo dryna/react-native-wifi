@@ -177,7 +177,7 @@ public class RNWifiModule extends ReactContextBaseJavaModule {
 	//After 10 seconds, a post telling you whether you are connected will pop up.
 	//Callback returns true if ssid is in the range
 	@ReactMethod
-	public void connectToProtectedSSID(String ssid, String password, Boolean isWep, Promise promise) {
+	public void connectToProtectedSSID(String ssid, String password, Boolean isWep, Boolean joinOnce, Promise promise) {
 		List < ScanResult > results = wifi.getScanResults();
 		boolean connected = false;
 		for (ScanResult result: results) {
